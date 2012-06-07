@@ -138,10 +138,19 @@ private ######################################################################
   end
 
   def watch_for_termination
-    pid, status = Process.wait2
-    process = running_processes.delete(pid)
-    info "process terminated", process.name
-    terminate_gracefully
+    unless @options[:ignore_exits]
+      pid, status = Process.wait2
+      process = running_processes.delete(pid)
+      info "process terminated", process.name
+      terminate_gracefully
+    else
+      while true
+        pid, status = Process.wait2
+        process = running_processes.delete(pid)
+        info "process terminated", process.name
+        # TODO: have an option that will relaunch the process?
+      end
+    end
   rescue Errno::ECHILD
   end
 

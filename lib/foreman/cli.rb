@@ -19,6 +19,7 @@ class Foreman::CLI < Thor
   method_option :env,         :type => :string,  :aliases => "-e", :desc => "Specify an environment file to load, defaults to .env"
   method_option :port,        :type => :numeric, :aliases => "-p"
   method_option :concurrency, :type => :string,  :aliases => "-c", :banner => '"alpha=5,bar=3"'
+  method_option :ignore_exits, :type => :boolean,  :aliases => "-i", :desc => "If a process exits, don't terminate the rest"
 
   class << self
     # Hackery. Take the run method away from Thor so that we can redefine it.

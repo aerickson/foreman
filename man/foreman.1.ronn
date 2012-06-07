@@ -36,6 +36,10 @@ The following options control how the application is run:
   * `-f`, `--procfile`:
     Specify an alternate Procfile to load, implies `-d` at the Procfile root.
 
+  * `-i`, `--ignore_exits`:
+    Ignore individual process exits and continue running. The default is to
+    gracefully terminate all processes.
+
   * `-p`, `--port`:
     Specify which port to use as the base for this application. Should be
     a multiple of 1000.
